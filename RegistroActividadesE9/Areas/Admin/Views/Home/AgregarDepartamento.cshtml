@@ -1,35 +1,38 @@
-﻿@{
+﻿@model RegistroActividadesE9.Models.ViewModels.AgregarDepartamentoViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
     Layout = "~/Views/Shared/LayoutDepartamento.cshtml";
 }
 <main class="agg">
     <div class="containerAgregar">
         <h2>Agregar Departamento</h2>
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form action="~/Admin/Home/AgregarDepartamento" method="POST" >
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
+                <input type="text" id="nombre" asp-for="nombre" name="nombre" required>
             </div>
             <div class="form-group">
                 <label for="usuario">Usuario:</label>
-                <input type="text" id="usuario" name="usuario" required>
+                <input type="text" id="usuario" asp-for="usuario" name="usuario" required>
             </div>
             <div class="form-group">
                 <label for="contrasena">Contraseña:</label>
-                <input type="password" id="contrasena" name="contrasena" required>
+                <input type="password" asp-for="contraseña" id="contrasena" name="contrasena" required>
             </div>
             <div class="form-group">
                 <label for="superior">Superior:</label>
-                <select id="superior" name="superior" required>
+                <input type="text" id="superior" asp-for="idSuperior" name="superior" required>
+              @*   <select id="superior" name="superior" required>
                     <option value="">Seleccione un superior</option>
                     <option value="superior1">Superior 1</option>
                     <option value="superior2">Superior 2</option>
                     <option value="superior3">Superior 3</option>
-                </select>
+                </select> *@
             </div>
             <div class="form-group button-group">
-                <a href="#">
-                    <input type="button" value="Confirmar">
-                </a>
+                    <input type="submit" class="accept-button" value="Aceptar">
+                   @*  <input type="button" value="Confirmar"> *@
+              
                 <a href="#">
                     <input type="button" class="cancel-button" value="Cancelar">
                 </a>

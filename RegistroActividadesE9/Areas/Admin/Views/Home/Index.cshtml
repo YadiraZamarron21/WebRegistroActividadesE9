@@ -1,41 +1,24 @@
-﻿@{
+﻿@model IEnumerable<RegistroActividadesE9.Models.ViewModels.DepartamentosViewModel>
+
+@{
     Layout = "~/Views/Shared/LayoutAdmin.cshtml";
 }
 <main>
 
     <ul class="department-list" id="departmentList">
-        <li class="department-item">
-            <span>Departamento 1</span>
-            <div class="button-container2">
-                <a href="#"><img id="img" src="https://cdn-icons-png.flaticon.com/512/1043/1043838.png" /></a>
 
-                <a href="#"> <img id="img" src="https://cdn-icons-png.flaticon.com/512/216/216923.png" /></a>
-            </div>
-        </li>
-        <li class="department-item">
-            <span>Departamento 2</span>
-            <div class="button-container2">
-                <a href="#"><img id="img" alt="Editar Departamento" src="https://cdn-icons-png.flaticon.com/512/1043/1043838.png" /></a>
+        @foreach (var item in Model)
+        {
+            <li class="department-item">
+                <span>@item.nombre</span>
+                <div class="button-container2">
+                    <a href="~/Admin/Home/EditarDepartamento/{@item.id}"><img id="img" src="https://cdn-icons-png.flaticon.com/512/1043/1043838.png" /></a>
 
-                <a href="#"> <img id="img" alt="Eliminar Departamento" src="https://cdn-icons-png.flaticon.com/512/216/216923.png" /></a>
-            </div>
-        </li>
-        <li class="department-item">
-            <span>Departamento 3</span>
-            <div class="button-container2">
-                <a href="#"><img alt="Editar Departamento" id="img" src="https://cdn-icons-png.flaticon.com/512/1043/1043838.png" /></a>
-
-                <a href="#"> <img alt="Eliminar Departamento" id="img" src="https://cdn-icons-png.flaticon.com/512/216/216923.png" /></a>
-            </div>
-        </li>
-        <li class="department-item">
-            <span>Departamento 1</span>
-            <div class="button-container2">
-                <a href="~/Admin/Home/EditarDepartamento"><img alt="Editar Departamento" id="img" src="https://cdn-icons-png.flaticon.com/512/1043/1043838.png" /></a>
-
-                <a href="~/Admin/Home/EliminarDepartamento"> <img alt="Eliminar Departamento" id="img" src="https://cdn-icons-png.flaticon.com/512/216/216923.png" /></a>
-            </div>
-        </li>
+                    <a href="~/Admin/Home/EliminarDepartamento/{@item.id}"> <img id="img" src="https://cdn-icons-png.flaticon.com/512/216/216923.png" /></a>
+                </div>
+            </li>
+        }
+      
     </ul>
 
 
