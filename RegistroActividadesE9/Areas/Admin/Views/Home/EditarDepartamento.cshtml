@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "~/Views/Shared/LayoutDepartamento.cshtml";
+}
+
+<main class="agg">
+    <div class="containerAgregar">
+        <h2>Editar Departamento</h2>
+        <form action="#" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="usuario">Usuario:</label>
+                <input type="text" id="usuario" name="usuario" required>
+            </div>
+            <div class="form-group">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" id="contrasena" name="contrasena" required>
+            </div>
+            <div class="form-group">
+                <label for="superior">Superior:</label>
+                <select id="superior" name="superior" required>
+                    <option value="">Seleccione un superior</option>
+                    <option value="superior1">Superior 1</option>
+                    <option value="superior2">Superior 2</option>
+                    <option value="superior3">Superior 3</option>
+                </select>
+            </div>
+            <div class="form-group button-group">
+                <a href="#">
+                    <input type="button" value="Confirmar">
+                </a>
+                <a href="#">
+                    <input type="button" class="cancel-button" value="Cancelar">
+                </a>
+            </div>
+        </form>
+    </div>
+</main>

@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "~/Views/Shared/LayoutAdmin.cshtml";
+}
+<main>
+
+    <ul class="department-list" id="departmentList">
+        <li class="department-item">
+            <span>Departamento 1</span>
+            <div class="button-container2">
+                <a href="#"><img id="img" src="https://cdn-icons-png.flaticon.com/512/1043/1043838.png" /></a>
+
+                <a href="#"> <img id="img" src="https://cdn-icons-png.flaticon.com/512/216/216923.png" /></a>
+            </div>
+        </li>
+        <li class="department-item">
+            <span>Departamento 2</span>
+            <div class="button-container2">
+                <a href="#"><img id="img" alt="Editar Departamento" src="https://cdn-icons-png.flaticon.com/512/1043/1043838.png" /></a>
+
+                <a href="#"> <img id="img" alt="Eliminar Departamento" src="https://cdn-icons-png.flaticon.com/512/216/216923.png" /></a>
+            </div>
+        </li>
+        <li class="department-item">
+            <span>Departamento 3</span>
+            <div class="button-container2">
+                <a href="#"><img alt="Editar Departamento" id="img" src="https://cdn-icons-png.flaticon.com/512/1043/1043838.png" /></a>
+
+                <a href="#"> <img alt="Eliminar Departamento" id="img" src="https://cdn-icons-png.flaticon.com/512/216/216923.png" /></a>
+            </div>
+        </li>
+        <li class="department-item">
+            <span>Departamento 1</span>
+            <div class="button-container2">
+                <a href="~/Admin/Home/EditarDepartamento"><img alt="Editar Departamento" id="img" src="https://cdn-icons-png.flaticon.com/512/1043/1043838.png" /></a>
+
+                <a href="~/Admin/Home/EliminarDepartamento"> <img alt="Eliminar Departamento" id="img" src="https://cdn-icons-png.flaticon.com/512/216/216923.png" /></a>
+            </div>
+        </li>
+    </ul>
+
+
+    <a class="floating-button" href="~/Admin/Home/AgregarDepartamento">
+        <img id="img3" src="https://cdn-icons-png.flaticon.com/512/2740/2740600.png" />
+    </a>
+</main>
