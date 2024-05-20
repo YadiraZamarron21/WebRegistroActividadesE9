@@ -83,7 +83,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
             try
             {
                 AgregarDepartamentoViewModel departamento = new AgregarDepartamentoViewModel();
-                HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/api/departamento/Get/" + id).Result;
+                HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "api/departamento/Get/" + id).Result;
 
                 if (response.IsSuccessStatusCode)
                 {
