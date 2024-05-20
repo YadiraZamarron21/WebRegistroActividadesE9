@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 
 namespace RegistroActividadesE9.Controllers
 {
@@ -7,6 +8,17 @@ namespace RegistroActividadesE9.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult Denied()
+        {
+            return View();
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

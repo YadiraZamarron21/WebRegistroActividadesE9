@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System.Text;
 using RegistroActividadesE9.Models.DTOs;
 using Microsoft.Build.Framework;
+using System.Net.Http;
 
 namespace RegistroActividadesE9.Areas.Admin.Controllers
 {
@@ -14,9 +15,12 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
         Uri baseUri = new Uri("https://actividadese9.websitos256.com/");
 
         private readonly HttpClient _client;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public HomeController()
+      
+        public HomeController(IHttpClientFactory httpClientFactory)
         {
+            _httpClientFactory = httpClientFactory;
             _client = new HttpClient();
             _client.BaseAddress = baseUri;
         }
@@ -169,5 +173,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
             }
             return View();
         }
+
+
     }
 }
