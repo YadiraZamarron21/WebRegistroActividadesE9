@@ -11,7 +11,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
     [Area("Admin")]
     public class HomeController : Controller
     {
-        Uri baseUri = new Uri("\r\nhttps://actividadese9.websitos256.com/");
+        Uri baseUri = new Uri("https://actividadese9.websitos256.com/");
 
         private readonly HttpClient _client;
 
@@ -49,11 +49,10 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
                 string data = JsonConvert.SerializeObject(vm);
                 StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
 
-                HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + "api/departamento/Post", content).Result;
+                HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + "api/departamento", content).Result;
 
                 if (response.IsSuccessStatusCode)
                 {
-
                     return RedirectToAction("Index");
                 }
 
@@ -71,13 +70,13 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
         {
             try
             {
-                DepartamentosViewModel departamento = new DepartamentosViewModel();
+                AgregarDepartamentoViewModel departamento = new AgregarDepartamentoViewModel();
                 HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/api/departamento/Get/"+ id ).Result;
 
                 if (response.IsSuccessStatusCode)
                 {
                     string data = response.Content.ReadAsStringAsync().Result;
-                    departamento = JsonConvert.DeserializeObject<DepartamentosViewModel>(data);
+                    departamento = JsonConvert.DeserializeObject<AgregarDepartamentoViewModel>(data);
                 }
                 return View(departamento);
             }
@@ -85,10 +84,10 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
             {
                 return View();
             }
-          
         }
+
         [HttpPost]
-        public IActionResult Editar(DepartamentosViewModel vm)
+        public IActionResult Editar(AgregarDepartamentoViewModel vm)
         {
             try
             {
