@@ -9,7 +9,7 @@
         <form action="~/Admin/Home/Agregar" method="post">
             <div class="form-group">
                 <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" asp-for="nombre" name="nombre" required>
+                <input type="text" id="nombre" asp-for="nombre" name="nombre" >
             </div>
             <div class="form-group">
                 <label for="usuario">Usuario:</label>
@@ -29,10 +29,10 @@
                 <option value="superior3">Superior 3</option>
                 </select> *@
             </div>
-            <p id="error">@Html.ValidationSummary(true)</p>
+            
             <div class="form-group button-group">
-                <input type="submit" class="accept-button" value="Aceptar">
-
+                <p id="error">@Html.ValidationSummary(true)</p>
+                <a > <input type="submit" class="accept-button" value="Aceptar"></a>
 
                 <a href="~/Admin/Home">
                     <input type="button" class="cancel-button" value="Cancelar">

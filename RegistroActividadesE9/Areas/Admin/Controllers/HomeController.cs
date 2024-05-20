@@ -44,25 +44,35 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Agregar(AgregarDepartamentoViewModel vm)
         {
-            try
-            {
-                string data = JsonConvert.SerializeObject(vm);
-                StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
-
-                HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + "api/departamento", content).Result;
-
-                if (response.IsSuccessStatusCode)
+                if (string.IsNullOrWhiteSpace(vm.nombre))
                 {
-                    return RedirectToAction("Index");
+                    ModelState.AddModelError("", "Escriba el nombre del departamento");
+                }
+                if (string.IsNullOrWhiteSpace(vm.usuario))
+                {
+                    ModelState.AddModelError("", "Escriba el nombre de usuario");
+                }
+                if (string.IsNullOrWhiteSpace(vm.contraseña))
+                {
+                    ModelState.AddModelError("", "Escriba una contraseña");
                 }
 
-            }
-            catch (Exception)
-            {
-                return View();
-            }
 
-            return View();
+                if (ModelState.IsValid)
+                {
+                    string data = JsonConvert.SerializeObject(vm);
+                    StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
+
+                    HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + "api/departamento", content).Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+              
+
+            return View(vm);
         }
 
         [HttpGet]
@@ -71,7 +81,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
             try
             {
                 AgregarDepartamentoViewModel departamento = new AgregarDepartamentoViewModel();
-                HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/api/departamento/Get/"+ id ).Result;
+                HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/api/departamento/Get/" + id).Result;
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -89,7 +99,21 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Editar(AgregarDepartamentoViewModel vm)
         {
-            try
+            if (string.IsNullOrWhiteSpace(vm.nombre))
+            {
+                ModelState.AddModelError("", "Escriba el nombre del departamento");
+            }
+            if (string.IsNullOrWhiteSpace(vm.usuario))
+            {
+                ModelState.AddModelError("", "Escriba el nombre de usuario");
+            }
+            if (string.IsNullOrWhiteSpace(vm.contraseña))
+            {
+                ModelState.AddModelError("", "Escriba una contraseña");
+            }
+
+
+            if (ModelState.IsValid)
             {
                 string data = JsonConvert.SerializeObject(vm);
                 StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
@@ -100,17 +124,49 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
                     return RedirectToAction("Index");
                 }
             }
+
+            return View(vm);
+        }
+
+        [HttpGet]
+        public IActionResult Eliminar(int id)
+        {
+            try
+            {
+                DepartamentosViewModel departamentos = new DepartamentosViewModel();
+                HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "api/departamento/Get/" + id).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string data = response.Content.ReadAsStringAsync().Result;
+                    departamentos = JsonConvert.DeserializeObject<DepartamentosViewModel>(data);
+
+                }
+                return View(departamentos);
+            }
             catch (Exception)
             {
                 return View();
             }
-         
-            return View();
         }
 
-
-        public IActionResult EliminarDepartamento()
+        [HttpPost, ActionName("Delete")]
+        public IActionResult EliminarC(int id)
         {
+            try
+            {
+                HttpResponseMessage response = _client.DeleteAsync(_client.BaseAddress + "api/departamento/Delete/" + id).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception)
+            {
+
+                return View();
+            }
             return View();
         }
     }

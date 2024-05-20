@@ -19,7 +19,7 @@
                 <input type="text" asp-for="usuario" id="usuario" name="usuario" required>
             </div>
             <div class="form-group">
-                <label for="contraseña">Contraseña:</label>
+                <label for="contrasena">Contraseña:</label>
                 <input type="password" asp-for="contraseña" id="contraseña" name="contraseña" required>
             </div>
             <div class="form-group">
@@ -32,13 +32,12 @@
                     <option value="superior3">Superior 3</option>
                 </select> *@
             </div>
-            <p id="error">@Html.ValidationSummary(true)</p>
+           
             <div class="form-group button-group">
-                <input type="submit" class="accept-button" value="Editar">
+                <p id="error">@Html.ValidationSummary(true)</p>
 
-              @*   <a href="#">
-                    <input type="button" value="Confirmar">
-                </a> *@
+                <a><input type="submit" class="accept-button" value="Editar"></a>
+
                 <a href="~/Admin/Home">
                     <input type="button" class="cancel-button" value="Cancelar">
                 </a>
