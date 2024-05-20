@@ -120,7 +120,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
                 string data = JsonConvert.SerializeObject(vm);
                 StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
 
-                HttpResponseMessage response = _client.PutAsync(_client.BaseAddress + "/api/departamento/Put", content).Result;
+                HttpResponseMessage response = _client.PutAsync(_client.BaseAddress + "api/departamento/Put", content).Result;
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");
