@@ -124,7 +124,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
                     return RedirectToAction("Index");
                 }
             }
-
+           
             return View(vm);
         }
 

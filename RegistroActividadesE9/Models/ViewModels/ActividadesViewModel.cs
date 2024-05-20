@@ -2,12 +2,20 @@
 {
     public class ActividadesViewModel
     {
+        public IEnumerable<DepartamentoModel> departamento { get; set; } = null!;
+    }
+    public class DepartamentoModel
+    {
+        public string departamento { get; set; } = null!;
+        public IEnumerable<actividadesModel> actividades { get; set; } = null!;
+    }
+    public class actividadesModel
+    {
         public int? id { get; set; }
         public string titulo { get; set; } = null!;
-        public string? Descripcion { get; set; }
-        public string Departamento { get; set; } = null!;
-        public DateOnly? FechaRealizacion { get; set; } //cuando se realizó la actividad
-        public DateTime FechaCreacion { get; set; }
-        public DateTime FechaActualizacion { get; set; }
+        public string? descripcion { get; set; }
+        public DateOnly? fechaRealizacion { get; set; } //cuando se realizó la actividad
+        public DateTime fechaCreacion { get; set; }
+        public DateTime fechaActualizacion { get; set; }
     }
 }

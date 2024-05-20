@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RegistroActividadesE9.Models.ViewModels.ActividadesViewModel>
+﻿@model RegistroActividadesE9.Models.ViewModels.ActividadesViewModel
 @{
     Layout = "~/Views/Shared/Layout.cshtml";
 }
@@ -7,16 +7,16 @@
     <div class="container">
             <div class="department">
 
-            @foreach (var item in Model)
+            @foreach (var item in Model.departamento)
             {
-                <div class="department-name">@item.Departamento</div>
+                <div class="department-name">@item.departamento</div>
 
-                @foreach (var x in Model)
+                @foreach (var x in item.actividades)
                 {
                     <div class="post multiple-images">
                         <h3>@x.titulo</h3>
-                        <span class="date">@x.FechaCreacion</span>
-                        <p>@x.Descripcion</p>
+                        <span class="date">@x.fechaCreacion</span>
+                        <p>@x.descripcion</p>
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbCwtCvnKb4dlZEOWsLg9iwnjHIeTRSMrWfQ&usqp=CAU" alt="Evidencia en fotografía">
                     </div>
                 }
