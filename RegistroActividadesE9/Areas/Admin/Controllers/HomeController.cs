@@ -4,13 +4,14 @@ using RegistroActividadesE9.Models.ViewModels;
 using Newtonsoft.Json;
 using System.Text;
 using RegistroActividadesE9.Models.DTOs;
+using Microsoft.Build.Framework;
 
 namespace RegistroActividadesE9.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class HomeController : Controller
     {
-        Uri baseUri = new Uri("https://actividadese9.websitos256.com/");
+        Uri baseUri = new Uri("\r\nhttps://actividadese9.websitos256.com/");
 
         private readonly HttpClient _client;
 
@@ -24,7 +25,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
         {
             List<DepartamentosViewModel> departamentoList = new();
 
-            HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "api/departamento").Result;
+            HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "api/Departamento").Result;
 
             if (response.IsSuccessStatusCode)
             {
@@ -35,60 +36,80 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult AgregarDepartamento()
+        public IActionResult Agregar()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult AgregarDepartamento(AgregarDepartamentoViewModel vm)
+        public IActionResult Agregar(AgregarDepartamentoViewModel vm)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return View(vm);
+                string data = JsonConvert.SerializeObject(vm);
+                StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + "api/departamento/Post", content).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+
+                    return RedirectToAction("Index");
+                }
+
+            }
+            catch (Exception)
+            {
+                return View();
             }
 
-            DepartamentoDTO dto = new()
-            {
-                nombre = vm.nombre,
-                usuario = vm.usuario,
-                contrasena = vm.contraseña,
-                idSuperior = vm.idSuperior
-            };
-            string data = JsonConvert.SerializeObject(dto);
-            StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
-
-              HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + "api/departamento/Post", content).Result;
-
-
-            return View(vm);
-            //    try
-            //    {
-            //        string data = JsonConvert.SerializeObject(vm);
-            //        StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
-
-            //        HttpResponseMessage response = _client.PostAsync(_client.BaseAddress + "api/departamento/Post", content).Result;
-
-            //        if (response.IsSuccessStatusCode)
-            //        {
-
-            //            return RedirectToAction("Index");
-            //        }
-
-            //    }
-            //    catch (Exception )
-            //    {
-
-            //        return View();
-            //    }
-
-            //    return View();
-        }
-
-        public IActionResult EditarDepartamento()
-        {
             return View();
         }
+
+        [HttpGet]
+        public IActionResult Editar(int id)
+        {
+            try
+            {
+                DepartamentosViewModel departamento = new DepartamentosViewModel();
+                HttpResponseMessage response = _client.GetAsync(_client.BaseAddress + "/api/departamento/Get/"+ id ).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string data = response.Content.ReadAsStringAsync().Result;
+                    departamento = JsonConvert.DeserializeObject<DepartamentosViewModel>(data);
+                }
+                return View(departamento);
+            }
+            catch (Exception)
+            {
+                return View();
+            }
+          
+        }
+        [HttpPost]
+        public IActionResult Editar(DepartamentosViewModel vm)
+        {
+            try
+            {
+                string data = JsonConvert.SerializeObject(vm);
+                StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = _client.PutAsync(_client.BaseAddress + "/api/departamento/Put", content).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception)
+            {
+                return View();
+            }
+         
+            return View();
+        }
+
+
         public IActionResult EliminarDepartamento()
         {
             return View();
