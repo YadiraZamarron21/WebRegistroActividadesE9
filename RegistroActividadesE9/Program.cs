@@ -1,18 +1,22 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddMvc();
 
 //Autenticacion
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/iniciarSesion";
+        options.LogoutPath = "/cerrarSesion";
+        options.Cookie.Name = "ASGcookie";
+        options.ExpireTimeSpan = TimeSpan.FromDays(5);
+    });
+builder.Services.AddAuthorization();
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
-
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
-}
-
 
 app.UseDeveloperExceptionPage();
 app.UseStaticFiles();

@@ -158,93 +158,100 @@
 }
 
 .login-box {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 400px;
-  padding: 40px;
-  transform: translate(-50%, -50%);
-  background: #1A374D;
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
-  border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: #1A374D;
+    box-sizing: border-box;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+    border-radius: 10px;
 }
 
-.login-box h2 {
-  margin: 0 0 30px;
-  padding: 0;
-  color: #6998AB;
-  text-align: center;
-}
+    .login-box h2 {
+        margin: 0 0 30px;
+        padding: 0;
+        color: #6998AB;
+        text-align: center;
+    }
+    .login-box .message {
+        color: red;
+        font-size: 14px;
+        margin-top: 15px;
+    }
 
-.login-box .user-box {
-  position: relative;
-}
 
-.login-box .user-box input {
-  width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
-  color: #1A374D;
-  margin-bottom: 30px;
-  border: none;
-  border-bottom: 1px solid #fff;
-  outline: none;
-  background: transparent;
-}
+    .login-box .user-box {
+        position: relative;
+    }
 
-.login-box .user-box label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 10px 0;
-  font-size: 16px;
-  color: #fff;
-  pointer-events: none;
-  transition: .5s;
-}
+        .login-box .user-box input {
+            width: 100%;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #fff;
+            margin-bottom: 30px;
+            border: none;
+            border-bottom: 1px solid #fff;
+            outline: none;
+            background: transparent;
+        }
 
-.login-box .user-box input:focus ~ label,
-.login-box .user-box input:valid ~ label {
-  top: -20px;
-  left: 0;
-  color: #03e9f4;
-  font-size: 12px;
-}
+        .login-box .user-box label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 10px 0;
+            font-size: 16px;
+            color: #fff;
+            pointer-events: none;
+            transition: .5s;
+        }
 
-.login-box form a {
-  position: relative;
-  display: inline-block;
-  padding: 30px 20px;
-  color: #1A374D;
-  font-size: 16px;
-  text-decoration: none;
-  text-transform: uppercase;
-  overflow: hidden;
-  transition: .5s;
-  margin-top: 10px;
-  letter-spacing: 14px;
-}
+        .login-box .user-box input:focus ~ label,
+        .login-box .user-box input:valid ~ label {
+            top: -20px;
+            left: 0;
+            color: #03e9f4;
+            font-size: 12px;
+        }
 
-.login-box .rounded-button{
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-  width: 100%;
-  border: 1px solid white;
-  padding: 15px;
-  color: #324b81;
-  font-size: 14px;
-  -webkit-transition: all 0.3 ease;
-  transition: all 0.3 ease;
-  cursor: pointer;
-}
+    .login-box form a {
+        position: relative;
+        display: inline-block;
+        padding: 30px 20px;
+        color: #1A374D;
+        font-size: 16px;
+        text-decoration: none;
+        text-transform: uppercase;
+        overflow: hidden;
+        transition: .5s;
+        margin-top: 10px;
+        letter-spacing: 14px;
+    }
 
-.login-box button:hover,
-.login button:active,
-.login-box button:focus {
-  background: #6998AB;
-}
+    .login-box .rounded-button {
+        font-family: "Roboto", sans-serif;
+        text-transform: uppercase;
+        outline: 0;
+        width: 100%;
+        border: 1px solid white;
+        padding: 15px;
+        color: #324b81;
+        font-size: 14px;
+        -webkit-transition: all 0.3 ease;
+        transition: all 0.3 ease;
+        cursor: pointer;
+    }
+
+    .login-box button:hover,
+    .login button:active,
+    .login-box button:focus {
+        background: #6998AB;
+    }
+
 
 /* Estilos para el botón redondeado y centrado */
 .button-container {

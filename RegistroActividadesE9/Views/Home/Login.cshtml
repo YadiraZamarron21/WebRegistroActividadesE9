@@ -1,27 +1,34 @@
-﻿<!DOCTYPE html>
+﻿@model RegistroActividadesE9.Models.ViewModels.LoginViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
 <html lang="en" class="login">
 <head>
     <meta charset="UTF-8">
-    <link href="style2.css" rel="stylesheet" />
+    <link href="~/style2.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
 <body class="login">
     <div class="login-box">
         <h2>Login</h2>
-        <form>
+        <form action="~/iniciarSesion" method="post">
+        
             <div class="user-box">
-                <input type="text" name="" required="">
+                <input asp-for="Usuario" type="text" name="" required="">
                 <label>Username</label>
             </div>
             <div class="user-box">
-                <input type="password" name="" required="">
+                <input asp-for="Contraseña" type="password" name="" required="">
                 <label>Password</label>
             </div>
             <div class="button-container">
-                <a href="#"> <input type="button" value="Login" class="rounded-button"></a>
+                <a> <input type="submit" value="Iniciar sesión" class="rounded-button"></a>
             </div>
-            <p class="message">Mensaje de error</p>
+
+            <p class="message">@Html.ValidationSummary(true)</p>
         </form>
     </div>
 </body>
