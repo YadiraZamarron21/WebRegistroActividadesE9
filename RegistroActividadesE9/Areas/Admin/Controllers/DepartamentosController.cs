@@ -130,14 +130,11 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
                     return View(vm);
                 }
             }
-
- 
-
             return View(vm);
         }
 
 
-        [HttpGet("Admin/Departamentos/Editar/{id}")]
+        [HttpGet("/Admin/Departamentos/Editar/{id}")]
         public async Task<IActionResult> Editar(int id)
         {
             var vm = new EDepartamentoViewModel();

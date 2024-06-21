@@ -251,6 +251,12 @@
     .login-box button:focus {
         background: #6998AB;
     }
+.login .message {
+    color: red;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
 
 
 /* Estilos para el botón redondeado y centrado */
