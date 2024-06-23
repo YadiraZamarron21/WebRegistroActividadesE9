@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using System.Net.Http.Headers;
 using System.Net;
 using System.Security.Claims;
@@ -38,6 +37,7 @@ namespace RegistroActividadesE9.Controllers
         public async Task<IActionResult> Login(LoginViewModel viewModel)
         {
             client.BaseAddress = new Uri("https://actividadese9.websitos256.com/");
+
 
             var json = JsonSerializer.Serialize(viewModel);
             var content = new StringContent(json, Encoding.UTF8, "application/json");

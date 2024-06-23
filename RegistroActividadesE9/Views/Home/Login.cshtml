@@ -1,4 +1,5 @@
 ﻿@model RegistroActividadesE9.Models.ViewModels.LoginViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     Layout = null;
 }
@@ -17,11 +18,11 @@
         <form action="~/iniciarSesion" method="post">
         
             <div class="user-box">
-                <input asp-for="Usuario" type="text" name="" required="">
+                <input asp-for="Username" type="email"  required="">
                 <label>Username</label>
             </div>
             <div class="user-box">
-                <input asp-for="Contraseña" type="password" name="" required="">
+                <input asp-for="Password" type="password"  required="">
                 <label>Password</label>
             </div>
             <div class="button-container">

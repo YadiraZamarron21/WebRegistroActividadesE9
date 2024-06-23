@@ -32,8 +32,8 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
 
             var idusuario = User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
 
-            var reponseActividades = httpClient.GetAsync($"/api/Actividad/{idusuario}");
-            var responseDepartamentos = httpClient.GetAsync($"/api/Departamento/{idusuario}");
+            var reponseActividades = httpClient.GetAsync($"/api/actividad/{idusuario}");
+            var responseDepartamentos = httpClient.GetAsync($"/api/departamento/{idusuario}");
 
 
             Task.WaitAll(reponseActividades, responseDepartamentos);
@@ -75,7 +75,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var userid = User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
-            var response = await httpClient.GetAsync($"/api/Departamento/{userid}");
+            var response = await httpClient.GetAsync($"/api/departamento/{userid}");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -132,7 +132,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
 
                 var loginjson = System.Text.Json.JsonSerializer.Serialize(dto);
                 var content = new StringContent(loginjson, Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync("/api/Actividad", content);
+                var response = await httpClient.PostAsync("/api/actividad", content);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -141,7 +141,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
                 else
                 {
                     var userid = User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
-                    var rresponse = await httpClient.GetAsync($"/api/Departamento/{userid}");
+                    var rresponse = await httpClient.GetAsync($"/api/departamento/{userid}");
                     if (rresponse.IsSuccessStatusCode)
                     {
                         var content2 = await rresponse.Content.ReadAsStringAsync();
@@ -170,7 +170,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
             var token = User.Claims.First(x => x.Type == ClaimTypes.UserData).Value;
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            var r = await httpClient.GetAsync($"/api/Actividad/{id}");
+            var r = await httpClient.GetAsync($"/api/actividad/{id}");
             if (r.IsSuccessStatusCode)
             {
                 var con = await r.Content.ReadAsStringAsync();
@@ -219,7 +219,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
 
             var jsonContent = new StringContent(JsonConvert.SerializeObject(acti), Encoding.UTF8, "application/json");
 
-            var response = await httpClient.PutAsync("/api/Actividad", jsonContent);
+            var response = await httpClient.PutAsync("/api/actividad", jsonContent);
 
             if (response.IsSuccessStatusCode)
             {
@@ -228,7 +228,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
             else
             {
 
-                var r = await httpClient.GetAsync($"/api/Actividad/{act.activ.id}");
+                var r = await httpClient.GetAsync($"/api/actividad/{act.activ.id}");
                 if (r.IsSuccessStatusCode)
                 {
                     var con = await r.Content.ReadAsStringAsync();
@@ -250,7 +250,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
             var token = User.Claims.First(x => x.Type == ClaimTypes.UserData).Value;
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            var response = await httpClient.DeleteAsync($"/api/Actividad/{id}");
+            var response = await httpClient.DeleteAsync($"/api/actividad/{id}");
 
             if (response.IsSuccessStatusCode)
             {
