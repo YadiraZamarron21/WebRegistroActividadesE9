@@ -43,7 +43,8 @@ namespace RegistroActividadesE9.Controllers
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             var response = await client.PostAsync("/api/Login", content);
-
+            var usu = viewModel.nombre;
+            var contraseña = viewModel.contrasena;
             if (!response.IsSuccessStatusCode)
             {
                 if (response.StatusCode == HttpStatusCode.BadRequest)
@@ -64,8 +65,9 @@ namespace RegistroActividadesE9.Controllers
             var jwtToken = handler.ReadJwtToken(token);
 
             var role = jwtToken.Claims.FirstOrDefault(claim => claim.Type == "role");
-            var name = jwtToken.Claims.FirstOrDefault(x => x.Type == "unique_name");
-            var id = jwtToken.Claims.FirstOrDefault(x => x.Type == "nameid");
+            var name = jwtToken.Claims.FirstOrDefault(x => x.Type == "username");
+            var id = jwtToken.Claims.FirstOrDefault(x => x.Type == "IdDepartamento");
+            var idsuperior = jwtToken.Claims.FirstOrDefault(x => x.Type == "IdSuperior");
 
             if (role is null || name is null || id is null)
             {
