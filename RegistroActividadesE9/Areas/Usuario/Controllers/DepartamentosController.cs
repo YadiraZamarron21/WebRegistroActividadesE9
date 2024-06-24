@@ -20,7 +20,7 @@ namespace RegistroActividadesE9.Areas.Usuario.Controllers
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var idusuario = User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
-            var response = await httpClient.GetAsync($"/api/Departamento/{idusuario}");
+            var response = await httpClient.GetAsync($"/api/departamento/{idusuario}");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();

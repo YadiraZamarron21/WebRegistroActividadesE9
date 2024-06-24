@@ -24,7 +24,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var idusuario = User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
-            var response = await httpClient.GetAsync($"/api/Departamento/{idusuario}");
+            var response = await httpClient.GetAsync($"/api/departamento/{idusuario}");
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
@@ -50,13 +50,13 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             var idusuario = User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
-            var response = await httpClient.GetAsync($"/api/Departamento/{idusuario}");
+            var response = await httpClient.GetAsync($"/api/departamento/{idusuario}");
 
             if (!response.IsSuccessStatusCode) return View();
 
             var content = await response.Content.ReadAsStringAsync();
 
-            var resp = await httpClient.GetAsync($"/api/Departamento/{idusuario}");
+            var resp = await httpClient.GetAsync($"/api/departamento/{idusuario}");
             if (resp.IsSuccessStatusCode)
             {
                 var content2 = await resp.Content.ReadAsStringAsync();
@@ -103,7 +103,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
                 };
                 var jsonl = System.Text.Json.JsonSerializer.Serialize(dep);
                 var content = new StringContent(jsonl, Encoding.UTF8, "application/json");
-                var response = await httpClient.PostAsync("/api/Departamento", content);
+                var response = await httpClient.PostAsync("/api/departamento", content);
                 if (response.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");
@@ -113,7 +113,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
                 {
                     var error = await response.Content.ReadAsStringAsync();
                     ModelState.AddModelError("", error);
-                    var res = await httpClient.GetAsync($"/api/Departamento/{idusuario}");
+                    var res = await httpClient.GetAsync($"/api/departamento/{idusuario}");
                     if (res.IsSuccessStatusCode)
                     {
                         var cont = await res.Content.ReadAsStringAsync();
@@ -144,7 +144,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
             var token = User.Claims.First(x => x.Type == ClaimTypes.UserData).Value;
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            var response = await httpClient.GetAsync($"/api/Departamento/{id}");
+            var response = await httpClient.GetAsync($"/api/departamento/{id}");
 
             if (!response.IsSuccessStatusCode) return View();
 
@@ -161,7 +161,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
 
 
             var idusuario = User.Claims.First(x => x.Type == ClaimTypes.NameIdentifier).Value;
-            var respon = await httpClient.GetAsync($"/api/Departamento/{idusuario}");
+            var respon = await httpClient.GetAsync($"/api/departamento/{idusuario}");
             if (respon.IsSuccessStatusCode)
             {
                 var cont = await respon.Content.ReadAsStringAsync();
@@ -186,7 +186,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
 
             var token = User.Claims.First(x => x.Type == ClaimTypes.UserData).Value;
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var respo = await httpClient.GetAsync($"/api/Departamento/{vm.id}");
+            var respo = await httpClient.GetAsync($"/api/departamento/{vm.id}");
 
             if (!respo.IsSuccessStatusCode) return View();
 
@@ -208,7 +208,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
             var jsonContent = System.Text.Json.JsonSerializer.Serialize(dto);
             var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-            var response = await httpClient.PutAsync("/api/Departamento", content);
+            var response = await httpClient.PutAsync("/api/departamento", content);
 
 
             if (response.IsSuccessStatusCode)
@@ -220,7 +220,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
             {
                 var error = await response.Content.ReadAsStringAsync();
                 ModelState.AddModelError("", error);
-                var res = await httpClient.GetAsync($"/api/Departamento/{idusuario}");
+                var res = await httpClient.GetAsync($"/api/departamento/{idusuario}");
                 if (res.IsSuccessStatusCode)
                 {
                     var con = await res.Content.ReadAsStringAsync();
@@ -247,7 +247,7 @@ namespace RegistroActividadesE9.Areas.Admin.Controllers
             var token = User.Claims.First(x => x.Type == ClaimTypes.UserData).Value;
             httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-            var response = await httpClient.DeleteAsync($"/api/Departamento/{id}");
+            var response = await httpClient.DeleteAsync($"/api/departamento/{id}");
 
             if (response.IsSuccessStatusCode)
             {
